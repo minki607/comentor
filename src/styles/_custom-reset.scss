@@ -1,0 +1,29 @@
+/** 
+ * 사용자 정의 초기화
+ */
+
+body {
+  margin: 0;
+  font-family: "Spoqa Han Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #212121;
+}
+
+body,
+body *,
+body::before,
+body::after,
+body *::before,
+body *::after {
+  box-sizing: border-box;
+}
+
+img {
+  vertical-align: middle;
+}
+
+button {
+  user-select: none;
+  cursor: pointer;
+}
