@@ -4,10 +4,13 @@ import { StrictMode } from "react";
 import { render } from "react-dom";
 import "./styles/index.scss";
 import App from "./app/App";
+import { StoreProvider } from "redux/store";
 
 render(
   <StrictMode>
-    <App />
+    <StoreProvider>
+      <App />
+    </StoreProvider>
   </StrictMode>,
   document.getElementById("root")
 );

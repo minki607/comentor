@@ -1,0 +1,14 @@
+@use 'styles/variable.scss' as *;
+
+.button {
+  @include flex;
+  border: 0;
+  border-radius: 5px;
+  color: $white;
+  font-weight: bold;
+  font-size: 2.2rem;
+}
+
+.primaryBtn {
+  background-color: $green;
+}
