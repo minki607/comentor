@@ -3,6 +3,7 @@ import Card from "components/Card/Card";
 import FeedContent from "components/Contents/FeedContent/FeedContent";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFeed, fetchMoreFeed } from "redux/storage/feedAll/feedAll";
+import { fetchAds, fetchMoreAds } from "redux/storage/ads/ads";
 import { page, userSection, feedSection } from "./FeedAllPage.module.scss";
 import { resetList } from "styles/modules/common.module.scss";
 import Button from "components/Button/Button";
@@ -10,11 +11,17 @@ import AdsContent from "components/Contents/AdsContent/AdsContent";
 
 const FeedAllPage = () => {
   const { feeds } = useSelector((state) => state.feedAll);
+  const { ads } = useSelector((state) => state.ads);
   const dispatch = useDispatch();
 
   // 피드 정보 요청
   useEffect(() => {
     dispatch(fetchFeed());
+  }, [dispatch]);
+
+  // 광고 정보 요청
+  useEffect(() => {
+    dispatch(fetchAds());
   }, [dispatch]);
 
   // 무한스크롤 로직
@@ -30,6 +37,7 @@ const FeedAllPage = () => {
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight) {
       dispatch(fetchMoreFeed());
+      dispatch(fetchMoreAds());
     }
   };
 
@@ -54,7 +62,7 @@ const FeedAllPage = () => {
                 {index !== 0 && index % 3 === 0 && (
                   <li>
                     <Card>
-                      <AdsContent />
+                      <AdsContent ads={ads?.data[index / 3 - 1]} />
                     </Card>
                   </li>
                 )}
