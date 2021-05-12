@@ -1,0 +1,16 @@
+@use 'styles/variable.scss' as *;
+
+.page {
+  @include flex(center, flex-start);
+}
+
+.userSection {
+  margin-right: 40px;
+}
+
+.feedSection {
+  max-width: 830px;
+  li {
+    margin-bottom: 30px;
+  }
+}

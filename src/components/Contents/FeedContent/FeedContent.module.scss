@@ -1,0 +1,58 @@
+@use 'styles/variable.scss' as *;
+
+.feed {
+  margin: 20px 30px;
+
+  header {
+    border-bottom: 1px solid $border-grey;
+    margin-bottom: 15px;
+    @include flex(space-between, center);
+    span {
+      margin-bottom: 11px;
+    }
+  }
+
+  span {
+    @include font(1.3rem, $font-normal);
+  }
+
+  h2 {
+    @include font(1.8rem, $font-bold, bold);
+    margin: 17px 0 6px 0px;
+  }
+  p {
+    @include font(1.6rem, $font-normal);
+  }
+  h2,
+  p {
+    @include ellipsis;
+  }
+}
+
+.feedMeta {
+  position: relative;
+
+  time {
+    @include font(1.3rem, $font-normal);
+    margin: 0 20px;
+  }
+
+  span:first-child {
+    color: $green;
+    margin: 0;
+  }
+
+  span:last-child:after {
+    display: none;
+  }
+
+  span:after {
+    margin: 0 10px;
+    content: "";
+    width: 0;
+    height: 100%;
+    position: absolute;
+    border-right: 1px solid $border-grey;
+    top: 0;
+  }
+}

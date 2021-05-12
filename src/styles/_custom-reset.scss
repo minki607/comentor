@@ -6,6 +6,50 @@ html {
   font-size: 10px;
 }
 
+html,
+body,
+div,
+p,
+span,
+strong,
+b,
+em,
+iframe,
+pre,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+img,
+dl,
+dt,
+dd,
+fieldset,
+form,
+legend,
+label,
+table,
+caption,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td,
+ul,
+ol,
+li,
+a,
+input,
+select,
+textarea {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+}
+
 body {
   margin: 0;
   font-family: "Spoqa Han Sans", sans-serif;
