@@ -2,6 +2,7 @@ import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
 import { StrictMode } from "react";
 import { render } from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./styles/index.scss";
 import App from "./app/App";
 import { StoreProvider } from "redux/store";
@@ -9,7 +10,9 @@ import { StoreProvider } from "redux/store";
 render(
   <StrictMode>
     <StoreProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </StoreProvider>
   </StrictMode>,
   document.getElementById("root")
