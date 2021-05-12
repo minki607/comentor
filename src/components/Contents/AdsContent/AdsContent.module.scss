@@ -14,16 +14,19 @@
 }
 
 .adsContainer {
-  display: flex;
+  @include flex;
 }
 
 .textContainer {
+  max-width: 465px;
   margin-left: 29.5px;
   h2 {
     @include font(1.8rem, $font-bold, bold);
     margin-bottom: 11px;
+    @include ellipsis;
   }
   p {
     @include font(1.6rem, $font-normal);
+    @include ellipsis(4);
   }
 }

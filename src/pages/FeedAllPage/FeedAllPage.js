@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Card from "components/Card/Card";
 import FeedContent from "components/Contents/FeedContent/FeedContent";
 import { useEffect } from "react";
@@ -25,16 +25,22 @@ const FeedAllPage = () => {
       </section>
       <section className={feedSection}>
         <ul className={resetList}>
-          <Card>
-            <AdsContent />
-          </Card>
-          {feeds?.data.map((feed) => {
+          {feeds?.data.map((feed, index) => {
             return (
-              <li key={feed.id}>
-                <Card>
-                  <FeedContent feed={feed} />
-                </Card>
-              </li>
+              <Fragment key={feed.id}>
+                {index !== 0 && index % 4 === 0 && (
+                  <li>
+                    <Card>
+                      <AdsContent />
+                    </Card>
+                  </li>
+                )}
+                <li>
+                  <Card>
+                    <FeedContent feed={feed} />
+                  </Card>
+                </li>
+              </Fragment>
             );
           })}
         </ul>
