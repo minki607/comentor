@@ -15,7 +15,7 @@ export const fetchAds = () => async (dispatch) => {
     const res = await axios.get(`${BASE_URL}/api/ads`, {
       params: {
         page: 1,
-        limit: 3,
+        limit: 4,
       },
     });
     if (res.status === 200) {
@@ -43,7 +43,7 @@ export const fetchMoreAds = () => async (dispatch, prevState) => {
     const res = await axios.get(`${BASE_URL}/api/ads`, {
       params: {
         page: ads.page + 1,
-        limit: 3,
+        limit: 4,
       },
     });
     if (res.status === 200) {
