@@ -59,11 +59,12 @@ const FeedAllPage = () => {
           로그인
         </Button>
       </section>
-      {isFeedLoading ? (
-        <LoadingSpinner title="로딩중" />
-      ) : (
-        <section className={feedSection}>
-          <OptionBar />
+
+      <section className={feedSection}>
+        <OptionBar />
+        {isFeedLoading ? (
+          <LoadingSpinner title="로딩중" />
+        ) : (
           <ul className={resetList}>
             {feeds?.data.map((feed, index) => {
               return (
@@ -89,8 +90,8 @@ const FeedAllPage = () => {
               );
             })}
           </ul>
-        </section>
-      )}
+        )}
+      </section>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import axios from "axios";
 const BASE_URL = "https://problem.comento.kr";
 
+const CHANGE_SORT_METHOD = "정렬 방법 변경";
+
 const FETCH_FEED = "피드 정보 요청";
 const FETCH_FEED_SUCCESS = "피드 정보 요청 성공";
 const FETCH_FEED_FAILURE = "피드 정보 요청 실패";
@@ -9,15 +11,20 @@ const FETCH_MORE_FEED = "피드 정보 더 요청";
 const FETCH_MORE_FEED_SUCCESS = "피드 정보 더 요청 성공";
 const FETCH_MORE_FEED_FAILURE = "피드 정보 더 요청 실패";
 
-export const fetchFeed = () => async (dispatch) => {
+export const changeSortMethod = (method) => {
+  return { type: CHANGE_SORT_METHOD, ord: method };
+};
+
+export const fetchFeed = () => async (dispatch, prevState) => {
+  const { feedAll } = prevState();
   dispatch({ type: FETCH_FEED });
   try {
     const res = await axios.get(`${BASE_URL}/api/list`, {
       params: {
         page: 1,
-        ord: "asc",
+        ord: feedAll.ord,
         limit: 10,
-        category: [1, 2, 3],
+        category: [1],
       },
     });
     if (res.status === 200) {
@@ -45,7 +52,7 @@ export const fetchMoreFeed = () => async (dispatch, prevState) => {
     const res = await axios.get(`${BASE_URL}/api/list`, {
       params: {
         page: feedAll.page + 1,
-        ord: "asc",
+        ord: feedAll.ord,
         limit: 10,
         category: [1, 2, 3],
       },
@@ -79,9 +86,14 @@ const initialState = {
 
 export const feedAllReducer = (
   state = initialState,
-  { type, feeds, error }
+  { type, feeds, error, ord }
 ) => {
   switch (type) {
+    case CHANGE_SORT_METHOD:
+      return {
+        ...state,
+        ord,
+      };
     case FETCH_FEED:
       return {
         ...state,
@@ -93,6 +105,7 @@ export const feedAllReducer = (
         ...state,
         feeds,
         isLoading: false,
+        page: 1, // 재요청시 페이지 1부터 다시시작
       };
 
     case FETCH_FEED_FAILURE:
