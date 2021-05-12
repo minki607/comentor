@@ -7,6 +7,7 @@ import { fetchFeed } from "redux/storage/feedAll/feedAll";
 import { page, userSection, feedSection } from "./FeedAllPage.module.scss";
 import { resetList } from "styles/modules/common.module.scss";
 import Button from "components/Button/Button";
+import AdsContent from "components/Contents/AdsContent/AdsContent";
 
 const FeedAllPage = () => {
   const { feeds } = useSelector((state) => state.feedAll);
@@ -24,6 +25,9 @@ const FeedAllPage = () => {
       </section>
       <section className={feedSection}>
         <ul className={resetList}>
+          <Card>
+            <AdsContent />
+          </Card>
           {feeds?.data.map((feed) => {
             return (
               <li key={feed.id}>

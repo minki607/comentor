@@ -1,0 +1,29 @@
+@use 'styles/variable.scss' as *;
+
+.ads {
+  margin: 20px 30px;
+  img {
+    width: 310px;
+    height: 179px;
+  }
+  span {
+    display: inline-block;
+    margin-bottom: 16.5px;
+    @include font(1.3rem, $font-light);
+  }
+}
+
+.adsContainer {
+  display: flex;
+}
+
+.textContainer {
+  margin-left: 29.5px;
+  h2 {
+    @include font(1.8rem, $font-bold, bold);
+    margin-bottom: 11px;
+  }
+  p {
+    @include font(1.6rem, $font-normal);
+  }
+}

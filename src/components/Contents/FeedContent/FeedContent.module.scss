@@ -8,6 +8,7 @@
     margin-bottom: 15px;
     @include flex(space-between, center);
     span {
+      color: $font-light;
       margin-bottom: 11px;
     }
   }
