@@ -1,0 +1,30 @@
+@use 'styles/variable.scss' as *;
+
+.option {
+  @include flex(space-between, center);
+}
+
+.sortOption {
+  @include flex;
+  button {
+    position: relative;
+    background-color: transparent;
+    border: 0;
+    padding: 0 10px;
+    &:before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: $border-grey;
+      position: absolute;
+      left: 0;
+    }
+  }
+  .active {
+    color: $font-normal;
+    &:before {
+      background-color: $green;
+    }
+  }
+}

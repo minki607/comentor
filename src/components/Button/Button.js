@@ -1,13 +1,14 @@
 import React from "react";
-import { button, primaryBtn } from "./Button.module.scss";
+import { button, primaryBtn, secondaryBtn } from "./Button.module.scss";
 
 const Button = ({
   type = "button",
-  primary = true,
+  primary,
   onClick,
   children,
   $width,
   $height,
+  className,
   ...restProps
 }) => {
   const customSize = {
@@ -17,8 +18,11 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`${button} ${primaryBtn}`}
+      className={`${button} ${
+        primary ? primaryBtn : secondaryBtn
+      } ${className}`}
       style={customSize}
+      onClick={onClick}
       {...restProps}
     >
       {children}

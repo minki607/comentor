@@ -9,6 +9,7 @@ import { resetList } from "styles/modules/common.module.scss";
 import Button from "components/Button/Button";
 import AdsContent from "components/Contents/AdsContent/AdsContent";
 import { ReactComponent as LoadingSpinner } from "assets/LoadingSpinner.svg";
+import OptionBar from "components/OptionBar/OptionBar";
 
 const FeedAllPage = () => {
   const { feeds, isLoading: isFeedLoading } = useSelector(
@@ -54,7 +55,7 @@ const FeedAllPage = () => {
   return (
     <div className={page}>
       <section className={userSection}>
-        <Button $width={235} $height={60}>
+        <Button primary $width={235} $height={60}>
           로그인
         </Button>
       </section>
@@ -62,6 +63,7 @@ const FeedAllPage = () => {
         <LoadingSpinner title="로딩중" />
       ) : (
         <section className={feedSection}>
+          <OptionBar />
           <ul className={resetList}>
             {feeds?.data.map((feed, index) => {
               return (

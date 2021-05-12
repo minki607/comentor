@@ -2,13 +2,17 @@
 
 .button {
   @include flex;
+  @include font(2.2rem, $white, bold);
   border: 0;
   border-radius: 5px;
-  color: $white;
-  font-weight: bold;
-  font-size: 2.2rem;
 }
 
 .primaryBtn {
   background-color: $green;
+}
+
+.secondaryBtn {
+  @include font(1.3rem, #adb5bd, normal);
+  background-color: $white;
+  border: 1px solid $border-grey;
 }
