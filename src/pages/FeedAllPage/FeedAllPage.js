@@ -55,7 +55,7 @@ const FeedAllPage = () => {
   return (
     <div className={page}>
       <section className={userSection}>
-        <Button primary $width={235} $height={60}>
+        <Button primary bold $width={235} $height={60}>
           로그인
         </Button>
       </section>

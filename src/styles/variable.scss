@@ -16,8 +16,16 @@ $font-light: #7e848a;
   color: $color;
 }
 
+//전체적인 레이아웃 잡는용
 @mixin flex($justify: center, $align: center) {
   display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+//버튼, checkbox 용
+@mixin inline-flex($justify: center, $align: center) {
+  display: inline-flex;
   justify-content: $justify;
   align-items: $align;
 }

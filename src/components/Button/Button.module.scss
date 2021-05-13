@@ -1,8 +1,8 @@
 @use 'styles/variable.scss' as *;
 
 .button {
-  @include flex;
-  @include font(2.2rem, $white, bold);
+  @include inline-flex;
+  @include font(2.2rem, $white);
   border: 0;
   border-radius: 5px;
 }

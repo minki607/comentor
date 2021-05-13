@@ -1,0 +1,14 @@
+@use 'styles/variable.scss' as *;
+
+.container {
+  @include inline-flex(flex-start, center);
+}
+.input {
+  height: 20px;
+  width: 20px;
+}
+
+.label {
+  margin-left: 5px;
+  @include font(1.6rem, $grey-light);
+}

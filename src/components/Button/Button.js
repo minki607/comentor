@@ -6,14 +6,18 @@ const Button = ({
   primary,
   onClick,
   children,
+  bold,
   $width,
   $height,
+  $fontSize,
   className,
   ...restProps
 }) => {
   const customSize = {
     width: $width,
     height: $height,
+    fontSize: $fontSize,
+    fontWeight: bold ? "bold" : "normal",
   };
   return (
     <button

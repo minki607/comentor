@@ -1,14 +1,43 @@
 import Button from "components/Button/Button";
+import Checkbox from "components/Checkbox/Checkbox";
 import Modal from "components/Modal/Modal";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSortMethod, fetchFeed } from "redux/storage/feedAll/feedAll";
-import { option, sortOption, active } from "./OptionBar.module.scss";
+import {
+  changeSelectedCategory,
+  changeSortMethod,
+  fetchCategory,
+  fetchFeed,
+} from "redux/storage/feedAll/feedAll";
+import {
+  option,
+  sortOption,
+  active,
+  filterOption,
+  optionContainer,
+} from "./OptionBar.module.scss";
+import { ReactComponent as LoadingSpinner } from "assets/LoadingSpinner.svg";
 
 const OptionBar = () => {
-  const { ord } = useSelector((state) => state.feedAll);
+  const {
+    ord,
+    category: categoryData,
+    selectedCategory,
+    isLoading,
+  } = useSelector((state) => state.feedAll);
   const [openFilter, setOpenFilter] = useState(false);
+  const [categoryArray, setCategoryArray] = useState([]);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategory());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      setCategoryArray(selectedCategory);
+    }
+  }, [selectedCategory]);
 
   const handleAscSort = () => {
     if (ord === "asc") return;
@@ -21,6 +50,24 @@ const OptionBar = () => {
     dispatch(changeSortMethod("desc"));
     dispatch(fetchFeed());
   };
+  const handleChangeCheck = (selected) => {
+    // 이미 선택된 카테고리 상태에 추가 된 상태면 없애고 그렇지 않으면 새로 추가
+    if (categoryArray.find((category) => category.id === selected.id)) {
+      setCategoryArray(
+        categoryArray.filter((category) => category.id !== selected.id)
+      );
+    } else {
+      setCategoryArray([...categoryArray, selected]);
+    }
+  };
+
+  const handleFilterSubmit = (e) => {
+    e.preventDefault();
+    dispatch(changeSelectedCategory(categoryArray));
+    dispatch(fetchFeed());
+    setOpenFilter(false);
+  };
+
   return (
     <div className={option}>
       <div className={sortOption}>
@@ -42,9 +89,41 @@ const OptionBar = () => {
         onClick={() => setOpenFilter(false)}
         heading="필터"
       >
-        <input type="checkbox" />
-        <input type="checkbox" />
-        <input type="checkbox" />
+        <form className={filterOption} onSubmit={handleFilterSubmit}>
+          <div className={optionContainer}>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              categoryData?.map((category) => {
+                return (
+                  <Checkbox
+                    key={category.id}
+                    id={`category${category.id}`}
+                    value={category}
+                    name={category.name}
+                    onChange={() => handleChangeCheck(category)}
+                    checked={
+                      !!categoryArray?.find(
+                        (selected) => selected.id === category.id
+                      )
+                    }
+                  >
+                    {category.name}
+                  </Checkbox>
+                );
+              })
+            )}
+          </div>
+          <Button
+            type="submit"
+            primary
+            $width={99}
+            $height={40}
+            $fontSize="1.6rem"
+          >
+            저장하기
+          </Button>
+        </form>
       </Modal>
     </div>
   );

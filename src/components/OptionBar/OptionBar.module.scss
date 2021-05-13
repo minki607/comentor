@@ -28,3 +28,18 @@
     }
   }
 }
+
+.filterOption {
+  @include flex(space-between, flex-start);
+  height: 100%;
+
+  .optionContainer {
+    display: flex;
+    flex-flow: column;
+    row-gap: 11px;
+  }
+
+  button {
+    align-self: flex-end;
+  }
+}

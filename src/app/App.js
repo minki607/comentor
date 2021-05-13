@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   const state = useSelector((state) => state.feedAll);
-  console.log(state);
   return (
     <div className="App">
       <Header />
