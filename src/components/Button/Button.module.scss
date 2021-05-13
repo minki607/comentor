@@ -5,6 +5,10 @@
   @include font(2.2rem, $white);
   border: 0;
   border-radius: 5px;
+  &:disabled {
+    background-color: $grey-light;
+    cursor: not-allowed;
+  }
 }
 
 .primaryBtn {

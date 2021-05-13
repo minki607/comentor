@@ -68,6 +68,12 @@ const OptionBar = () => {
     setOpenFilter(false);
   };
 
+  const handleModalClose = () => {
+    // 모달을 닫으면 스토어의 상태랑 다시 동기화 되도록 설정
+    setCategoryArray(selectedCategory);
+    setOpenFilter(false);
+  };
+
   return (
     <div className={option}>
       <div className={sortOption}>
@@ -84,11 +90,7 @@ const OptionBar = () => {
       <Button onClick={() => setOpenFilter(true)} $width={45} $height={24}>
         필터
       </Button>
-      <Modal
-        isVisible={openFilter}
-        onClick={() => setOpenFilter(false)}
-        heading="필터"
-      >
+      <Modal isVisible={openFilter} onClick={handleModalClose} heading="필터">
         <form className={filterOption} onSubmit={handleFilterSubmit}>
           <div className={optionContainer}>
             {isLoading ? (
@@ -120,6 +122,7 @@ const OptionBar = () => {
             $width={99}
             $height={40}
             $fontSize="1.6rem"
+            disabled={categoryArray?.length === 0 && true}
           >
             저장하기
           </Button>
