@@ -21,10 +21,10 @@ export const fetchFeed = () => async (dispatch, prevState) => {
   try {
     const res = await axios.get(`${BASE_URL}/api/list`, {
       params: {
-        page: 1,
+        page: feedAll.page,
         ord: feedAll.ord,
         limit: 10,
-        category: [1],
+        category: [1, 2, 3],
       },
     });
     if (res.status === 200) {
@@ -93,6 +93,7 @@ export const feedAllReducer = (
       return {
         ...state,
         ord,
+        page: 1,
       };
     case FETCH_FEED:
       return {
@@ -105,7 +106,6 @@ export const feedAllReducer = (
         ...state,
         feeds,
         isLoading: false,
-        page: 1, // 재요청시 페이지 1부터 다시시작
       };
 
     case FETCH_FEED_FAILURE:

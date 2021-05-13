@@ -1,11 +1,13 @@
 import Button from "components/Button/Button";
-import React from "react";
+import Modal from "components/Modal/Modal";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSortMethod, fetchFeed } from "redux/storage/feedAll/feedAll";
 import { option, sortOption, active } from "./OptionBar.module.scss";
 
 const OptionBar = () => {
   const { ord } = useSelector((state) => state.feedAll);
+  const [openFilter, setOpenFilter] = useState(false);
   const dispatch = useDispatch();
 
   const handleAscSort = () => {
@@ -32,9 +34,18 @@ const OptionBar = () => {
           내림차순
         </Button>
       </div>
-      <Button $width={45} $height={24}>
+      <Button onClick={() => setOpenFilter(true)} $width={45} $height={24}>
         필터
       </Button>
+      <Modal
+        isVisible={openFilter}
+        onClick={() => setOpenFilter(false)}
+        heading="필터"
+      >
+        <input type="checkbox" />
+        <input type="checkbox" />
+        <input type="checkbox" />
+      </Modal>
     </div>
   );
 };
