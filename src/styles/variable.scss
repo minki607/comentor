@@ -43,3 +43,9 @@ $font-light: #7e848a;
     -webkit-line-clamp: $line;
   }
 }
+
+@mixin mobileTablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}

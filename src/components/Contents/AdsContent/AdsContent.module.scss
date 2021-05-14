@@ -8,6 +8,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    @include mobileTablet {
+      max-width: 100%;
+    }
   }
   span {
     display: inline-block;
@@ -18,11 +21,20 @@
 
 .adsContainer {
   @include flex;
+  @include mobileTablet {
+    flex-flow: column wrap;
+  }
 }
 
 .textContainer {
   max-width: 465px;
   margin-left: 29.5px;
+  @include mobileTablet {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
+
   h2 {
     @include font(1.8rem, $font-bold, bold);
     margin-bottom: 11px;

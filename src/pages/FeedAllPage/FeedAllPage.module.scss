@@ -6,11 +6,23 @@
 
 .userSection {
   margin-right: 40px;
+  @include mobileTablet {
+    display: none;
+  }
 }
 
 .feedSection {
   width: 830px;
+  @include mobileTablet {
+    width: 100%;
+  }
   li {
     margin: 15px 0 30px 0;
+    @include mobileTablet {
+      margin: 10px 0;
+    }
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }

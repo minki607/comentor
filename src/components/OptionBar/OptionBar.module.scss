@@ -2,6 +2,11 @@
 
 .option {
   @include flex(space-between, center);
+  height: 44px;
+  background-color: $white;
+  @include mobileTablet {
+    padding: 0 18px;
+  }
 }
 
 .sortOption {

@@ -1,4 +1,11 @@
+@use 'styles/variable.scss' as *;
+
 .page {
   max-width: 1140px;
   margin: 50px auto;
+  min-height: 100vh;
+  @include mobileTablet {
+    margin: 0;
+    background-color: $grey-light2;
+  }
 }
