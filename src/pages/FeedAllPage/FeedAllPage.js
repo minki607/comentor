@@ -82,7 +82,7 @@ const FeedAllPage = () => {
                       </li>
                     ))}
                   <li>
-                    <Card>
+                    <Card linkTo={`post/${feed.id}`}>
                       <FeedContent feed={feed} />
                     </Card>
                   </li>
