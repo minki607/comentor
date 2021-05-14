@@ -119,7 +119,6 @@ const OptionBar = () => {
           <Button
             type="submit"
             primary
-            $width={99}
             $height={40}
             $fontSize="1.6rem"
             disabled={categoryArray?.length === 0 && true}

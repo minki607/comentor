@@ -36,6 +36,9 @@
 
 .filterOption {
   @include flex(space-between, flex-start);
+  @include mobileTablet {
+    flex-flow: column wrap;
+  }
   height: 100%;
 
   .optionContainer {
@@ -45,6 +48,10 @@
   }
 
   button {
+    padding: 8px 20px;
     align-self: flex-end;
+    @include mobileTablet {
+      width: 100%;
+    }
   }
 }

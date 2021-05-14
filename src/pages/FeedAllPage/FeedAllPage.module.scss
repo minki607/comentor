@@ -1,7 +1,7 @@
 @use 'styles/variable.scss' as *;
 
 .page {
-  @include flex(center, flex-start);
+  @include flex(flex-start, flex-start);
 }
 
 .userSection {

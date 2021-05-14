@@ -2,7 +2,9 @@
 
 .feed {
   margin: 20px 30px;
-
+  @include mobileTablet {
+    margin: 20px 15px;
+  }
   header {
     border-bottom: 1px solid $border-grey;
     margin-bottom: 15px;
