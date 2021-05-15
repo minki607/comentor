@@ -1,10 +1,6 @@
 @use 'styles/variable.scss' as *;
 
 .ads {
-  margin: 20px 30px;
-  @include mobileTablet {
-    margin: 20px 15px;
-  }
   img {
     max-width: 310px;
     max-height: 179px;

@@ -1,7 +1,18 @@
 @use 'styles/variable.scss' as *;
 
 .card {
+  padding: 20px 30px;
+  @include mobileTablet {
+    padding: 20px 15px;
+  }
   border: 1px solid $border-grey;
   border-radius: 5px;
   background-color: $white;
+}
+
+.selected {
+  border: 1px solid $green;
+  @include mobileTablet {
+    border: none;
+  }
 }

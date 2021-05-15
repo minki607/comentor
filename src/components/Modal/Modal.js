@@ -39,6 +39,12 @@ const Modal = ({ isVisible, onClick, heading, children }) => {
         const firstFocusNode = focusableNodeList[0];
         const lastFocusNode = focusableNodeList[focusableNodeList.length - 1];
 
+        // 첫 번째 포커스 요소에서 shift + tab시 마지막 요소로 이동
+        if (e.target === firstFocusNode && e.shiftKey && e.key === "Tab") {
+          e.preventDefault();
+          lastFocusNode.focus();
+        }
+
         // 마지막 포커스 요소에서 tab을 누르면 첫 번째 포커스 요소로 이동
         if (e.target === lastFocusNode && e.key === "Tab") {
           e.preventDefault();
