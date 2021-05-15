@@ -1,9 +1,9 @@
 import React from "react";
-import { feedSingle } from "./SingleFeedContent.Module.scss";
+import { feedDetail } from "./SingleFeedContent.Module.scss";
 
 const SingleFeedContent = ({ feed: { title, contents, created_at } = {} }) => {
   return (
-    <article className={feedSingle}>
+    <article className={feedDetail}>
       <h2>{title}</h2>
       <p>{contents}</p>
       <time>{created_at && created_at.split("T")[0]}</time>

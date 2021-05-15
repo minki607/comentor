@@ -1,6 +1,6 @@
 import Card from "components/Card/Card";
 import React, { useEffect } from "react";
-import { feedSection, feedCard, replyCount } from "./FeedPage.module.scss";
+import { feedSection, replyCount, replies } from "./FeedPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import SingleFeedContent from "components/Contents/SingleFeedContent/SingleFeedContent";
@@ -17,7 +17,6 @@ const FeedPage = () => {
     dispatch(fetchFeedDetail(id));
   }, [dispatch, id]);
 
-  console.log(feed);
   return (
     <section className={feedSection}>
       {isLoading ? (
@@ -25,17 +24,17 @@ const FeedPage = () => {
       ) : (
         feed && (
           <>
-            <Card highlight className={feedCard}>
+            <Card highlight borderMobile={false}>
               <SingleFeedContent feed={feed} />
             </Card>
             <div className={replyCount}>
               답변 <em>{feed.reply.length}</em>
             </div>
             {feed.reply.length !== 0 && (
-              <ul>
+              <ul className={replies}>
                 {feed.reply.map((post) => (
                   <li key={post.id}>
-                    <Card>
+                    <Card borderMobile={false}>
                       <FeedReplyContent reply={post} />
                     </Card>
                   </li>

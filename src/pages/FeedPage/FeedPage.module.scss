@@ -1,15 +1,35 @@
 @use 'styles/variable.scss' as *;
 
 .feedSection {
-  // 카드랑 답글 간격
-  .feedCard,
   li {
     margin-bottom: 30px;
+    @include mobileTablet {
+      margin-bottom: 0;
+    }
+  }
+
+  article {
+    @include mobileTablet {
+      padding: 20px 0;
+    }
+  }
+
+  // 첫번째 답글의 카드
+  .replies {
+    div:first-child {
+      @include mobileTablet {
+        padding-top: 0px;
+      }
+    }
   }
 
   .replyCount {
     @include font(1.6rem);
-    margin-bottom: 10px;
+    background-color: $white;
+    padding: 30px 0 10px 0;
+    @include mobileTablet {
+      padding-left: 20px;
+    }
     em {
       font-style: normal;
       color: $green;

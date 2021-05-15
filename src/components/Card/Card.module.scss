@@ -40,6 +40,9 @@
 
 .selected {
   border: 1px solid $green;
+}
+
+.noBorderMobile {
   @include mobileTablet {
     border: none;
   }

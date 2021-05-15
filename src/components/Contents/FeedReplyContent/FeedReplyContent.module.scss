@@ -1,6 +1,11 @@
 @use 'styles/variable.scss' as *;
 
 .reply {
+  @include mobileTablet {
+    border-top: 1px solid $border-grey;
+    border-bottom: 1px solid $border-grey;
+  }
+
   p {
     margin-bottom: 15px;
   }

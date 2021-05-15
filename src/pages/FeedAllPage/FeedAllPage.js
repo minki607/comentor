@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useCallback, useEffect } from "react";
 import Card from "components/Card/Card";
 import FeedContent from "components/Contents/FeedContent/FeedContent";
 import { useSelector, useDispatch } from "react-redux";
@@ -29,7 +29,7 @@ const FeedAllPage = () => {
   }, [dispatch]);
 
   // 무한스크롤 로직
-  const onInfiniteScroll = () => {
+  const onInfiniteScroll = useCallback(() => {
     const scrollHeight = Math.max(
       document.documentElement.scrollHeight,
       document.body.scrollHeight
@@ -43,13 +43,13 @@ const FeedAllPage = () => {
       dispatch(fetchMoreFeed());
       dispatch(fetchMoreAds());
     }
-  };
+  }, [dispatch]);
 
   // 스크롤 이벤트 리스너 등록
   useEffect(() => {
     window.addEventListener("scroll", onInfiniteScroll);
     return () => window.removeEventListener("scroll", onInfiniteScroll);
-  }, []);
+  }, [onInfiniteScroll]);
 
   return (
     <div className={page}>
@@ -81,7 +81,7 @@ const FeedAllPage = () => {
                       </li>
                     ))}
                   <li>
-                    <Card linkTo={`post/${feed.id}`}>
+                    <Card linkTo={`feed/${feed.id}`}>
                       <FeedContent feed={feed} />
                     </Card>
                   </li>

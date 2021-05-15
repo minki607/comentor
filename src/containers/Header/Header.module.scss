@@ -17,4 +17,8 @@
       margin-left: 15px;
     }
   }
+  button {
+    @include font(2.2rem, #282c30);
+    border: none;
+  }
 }
