@@ -1,26 +1,8 @@
 @use 'styles/variable.scss' as *;
 
 .feed {
-  header {
-    border-bottom: 1px solid $border-grey;
-    margin-bottom: 15px;
-    @include flex(space-between, center);
-    span {
-      color: $font-light;
-      margin-bottom: 11px;
-    }
-  }
-
-  span {
-    @include font(1.3rem, $font-normal);
-  }
-
   h2 {
-    @include font(1.8rem, $font-bold, bold);
     margin: 17px 0 6px 0px;
-  }
-  p {
-    @include font(1.6rem, $font-normal);
   }
 
   h2,
@@ -33,7 +15,6 @@
   position: relative;
 
   time {
-    @include font(1.3rem, $font-normal);
     margin: 0 20px;
   }
 

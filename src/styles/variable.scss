@@ -8,6 +8,7 @@ $border-grey: #e1e4e7;
 $font-bold: #282c30;
 $font-normal: #495057;
 $font-light: #7e848a;
+$font-light2: #adb5bd;
 
 @mixin font($size, $color: $font-normal, $weight: 400) {
   font-family: "Spoqa Han Sans", sans-serif;

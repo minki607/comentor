@@ -5,10 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchFeed, fetchMoreFeed } from "redux/storage/feedAll/feedAll";
 import { fetchAds, fetchMoreAds } from "redux/storage/ads/ads";
 import { page, userSection, feedSection } from "./FeedAllPage.module.scss";
-import { resetList } from "styles/modules/common.module.scss";
 import Button from "components/Button/Button";
 import AdsContent from "components/Contents/AdsContent/AdsContent";
-import { ReactComponent as LoadingSpinner } from "assets/LoadingSpinner.svg";
+import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
 import OptionBar from "components/OptionBar/OptionBar";
 
 const FeedAllPage = () => {
@@ -65,7 +64,7 @@ const FeedAllPage = () => {
         {isFeedLoading ? (
           <LoadingSpinner title="로딩중" />
         ) : (
-          <ul className={resetList}>
+          <ul>
             {feeds?.data.map((feed, index) => {
               return (
                 // 처음을 제외한 3의 배수번째 인덱스마다 광고 하나씩 삽입

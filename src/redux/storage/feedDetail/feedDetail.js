@@ -14,7 +14,7 @@ export const fetchFeedDetail = (id) => async (dispatch) => {
       },
     });
     if (res.status === 200) {
-      dispatch({ type: FETCH_FEED_DETAIL_SUCCESS, feed: res.data });
+      dispatch({ type: FETCH_FEED_DETAIL_SUCCESS, feed: res.data.data });
     } else {
       dispatch({
         type: FETCH_FEED_DETAIL_FAILURE,

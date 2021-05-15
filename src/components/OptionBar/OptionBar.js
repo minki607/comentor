@@ -16,7 +16,7 @@ import {
   filterOption,
   optionContainer,
 } from "./OptionBar.module.scss";
-import { ReactComponent as LoadingSpinner } from "assets/LoadingSpinner.svg";
+import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
 
 const OptionBar = () => {
   const {

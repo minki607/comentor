@@ -1,1 +1,18 @@
 @use 'styles/variable.scss' as *;
+
+.feedSection {
+  // 카드랑 답글 간격
+  .feedCard,
+  li {
+    margin-bottom: 30px;
+  }
+
+  .replyCount {
+    @include font(1.6rem);
+    margin-bottom: 10px;
+    em {
+      font-style: normal;
+      color: $green;
+    }
+  }
+}

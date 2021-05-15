@@ -1,10 +1,15 @@
 @use 'styles/variable.scss' as *;
 
 .feedSingle {
+  p {
+    margin: 6px 0 15px 0;
+  }
+  time {
+    color: $font-light2;
+  }
   @include mobileTablet {
     border-top: 1px solid $green;
     border-bottom: 1px solid $green;
-    margin: 20px 0;
-    height: 100px;
+    padding: 20px 0;
   }
 }
