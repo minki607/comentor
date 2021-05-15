@@ -35,6 +35,19 @@
 }
 
 .filterOption {
+  @include flex;
+  .selectedList {
+    @include flex;
+    li {
+      margin: 0 5px;
+      &:last-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.filterForm {
   @include flex(space-between, flex-start);
   @include mobileTablet {
     flex-flow: column wrap;

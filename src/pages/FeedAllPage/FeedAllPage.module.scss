@@ -16,7 +16,8 @@
   @include mobileTablet {
     width: 100%;
   }
-  li {
+
+  .cardList {
     margin: 15px 0 30px 0;
     @include mobileTablet {
       margin: 10px 0;

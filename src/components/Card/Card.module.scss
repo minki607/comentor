@@ -2,6 +2,8 @@
 
 .card {
   padding: 20px 30px;
+  // 피드 #18 드래그 방지
+  user-select: none;
   @include mobileTablet {
     padding: 20px 15px;
   }
@@ -13,10 +15,6 @@
     border-bottom: 1px solid $border-grey;
     margin-bottom: 15px;
     @include flex(space-between, center);
-    span {
-      color: $font-light;
-      margin-bottom: 11px;
-    }
   }
 
   // 카드내에서 반복적으로 사용되는 폰트 정리

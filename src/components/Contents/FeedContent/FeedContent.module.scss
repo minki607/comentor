@@ -7,7 +7,18 @@
 
   h2,
   p {
-    @include ellipsis;
+    @include ellipsis(1);
+  }
+}
+
+header {
+  .feedId {
+    @include flex;
+    color: $font-light;
+    margin-bottom: 11px;
+    div {
+      margin-right: 5px;
+    }
   }
 }
 

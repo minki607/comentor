@@ -1,0 +1,10 @@
+@use 'styles/variable.scss' as *;
+
+.tag {
+  @include flex;
+  background-color: $green;
+  padding: 5px 10px;
+  color: $white;
+  font-weight: bold;
+  border-radius: 5px;
+}

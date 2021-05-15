@@ -14,9 +14,12 @@ import {
   sortOption,
   active,
   filterOption,
+  selectedList,
+  filterForm,
   optionContainer,
 } from "./OptionBar.module.scss";
 import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
+import Tag from "components/Tag/Tag";
 
 const OptionBar = () => {
   const {
@@ -87,11 +90,23 @@ const OptionBar = () => {
           내림차순
         </Button>
       </div>
-      <Button onClick={() => setOpenFilter(true)} $width={45} $height={24}>
-        필터
-      </Button>
+      <div className={filterOption}>
+        {selectedCategory && (
+          <ul className={selectedList}>
+            {selectedCategory.map((category) => (
+              <li key={category.id}>
+                <Tag>{category.name}</Tag>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <Button onClick={() => setOpenFilter(true)} $width={45} $height={24}>
+          필터
+        </Button>
+      </div>
       <Modal isVisible={openFilter} onClick={handleModalClose} heading="필터">
-        <form className={filterOption} onSubmit={handleFilterSubmit}>
+        <form className={filterForm} onSubmit={handleFilterSubmit}>
           <div className={optionContainer}>
             {isLoading ? (
               <LoadingSpinner />

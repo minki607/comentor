@@ -4,7 +4,12 @@ import FeedContent from "components/Contents/FeedContent/FeedContent";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchFeed, fetchMoreFeed } from "redux/storage/feedAll/feedAll";
 import { fetchAds, fetchMoreAds } from "redux/storage/ads/ads";
-import { page, userSection, feedSection } from "./FeedAllPage.module.scss";
+import {
+  page,
+  userSection,
+  feedSection,
+  cardList,
+} from "./FeedAllPage.module.scss";
 import Button from "components/Button/Button";
 import AdsContent from "components/Contents/AdsContent/AdsContent";
 import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
@@ -74,13 +79,13 @@ const FeedAllPage = () => {
                     (isAdsLoading ? (
                       <LoadingSpinner title="로딩중" />
                     ) : (
-                      <li>
+                      <li className={cardList}>
                         <Card>
                           <AdsContent ads={ads?.data[index / 3 - 1]} />
                         </Card>
                       </li>
                     ))}
-                  <li>
+                  <li className={cardList}>
                     <Card linkTo={`feed/${feed.id}`}>
                       <FeedContent feed={feed} />
                     </Card>

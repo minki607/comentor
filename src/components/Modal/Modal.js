@@ -77,7 +77,11 @@ const Modal = ({ isVisible, onClick, heading, children }) => {
           >
             <h2>{heading}</h2>
             <div className={content}>{children}</div>
-            <Button onClick={onClick} aria-label="닫기" className={closeBtn}>
+            <Button
+              onClick={onClick}
+              aria-label="모달 닫기"
+              className={closeBtn}
+            >
               <Close title="닫기" />
             </Button>
           </div>
