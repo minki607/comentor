@@ -20,7 +20,7 @@ const FeedAllPage = () => {
     (state) => state.feedAll
   );
   const { ads, isLoading: isAdsLoading } = useSelector((state) => state.ads);
-  const { previewLine } = useSelector((state) => state.option);
+  const { previewLine } = useSelector((state) => state.feedOption);
   const dispatch = useDispatch();
 
   // 피드 정보 요청

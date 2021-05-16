@@ -1,9 +1,6 @@
 import axios from "axios";
 const BASE_URL = "https://problem.comento.kr";
 
-const CHANGE_SORT_METHOD = "정렬 방법 변경";
-const CHANGE_SELECTED_CATEGORY = "선택된 카테고리 변경";
-
 const FETCH_CATEGORY = "카테고리 정보 요청";
 const FETCH_CATEGORY_SUCCESS = "카테고리 정보 요청 성공";
 const FETCH_CATEGORY_FAILURE = "카테고리 정보 요청 실패";
@@ -17,18 +14,11 @@ const FETCH_MORE_FEED_SUCCESS = "피드 정보 더 요청 성공";
 const FETCH_MORE_FEED_FAILURE = "피드 정보 더 요청 실패";
 
 export const fetchCategory = () => async (dispatch, prevState) => {
-  const { feedAll } = prevState();
   dispatch({ type: FETCH_CATEGORY });
   try {
     const res = await axios.get(`${BASE_URL}/api/category`);
     if (res.status === 200) {
       dispatch({ type: FETCH_CATEGORY_SUCCESS, category: res.data.category });
-      // 선택된 카테고리 정보가 없으면 전체 카테고리를 선택하도록 설정
-      if (!feedAll.selectedCategory)
-        dispatch({
-          type: CHANGE_SELECTED_CATEGORY,
-          selectedCategory: res.data.category,
-        });
     } else {
       dispatch({
         type: FETCH_CATEGORY_FAILURE,
@@ -43,25 +33,17 @@ export const fetchCategory = () => async (dispatch, prevState) => {
   }
 };
 
-export const changeSelectedCategory = (category) => {
-  return { type: CHANGE_SELECTED_CATEGORY, selectedCategory: category };
-};
-
-export const changeSortMethod = (method) => {
-  return { type: CHANGE_SORT_METHOD, ord: method };
-};
-
 export const fetchFeed = () => async (dispatch, prevState) => {
-  const { feedAll } = prevState();
+  const { feedAll, feedOption } = prevState();
   dispatch({ type: FETCH_FEED });
   try {
     const res = await axios.get(`${BASE_URL}/api/list`, {
       params: {
         page: feedAll.page,
-        ord: feedAll.ord,
+        ord: feedOption.order,
         limit: 10,
-        category: feedAll.selectedCategory
-          ? feedAll.selectedCategory.map((category) => category.id)
+        category: feedOption.selectedCategory
+          ? feedOption.selectedCategory.map((category) => category.id)
           : [1, 2, 3],
       },
     });
@@ -82,7 +64,7 @@ export const fetchFeed = () => async (dispatch, prevState) => {
 };
 
 export const fetchMoreFeed = () => async (dispatch, prevState) => {
-  const { feedAll } = prevState();
+  const { feedAll, feedOption } = prevState();
   // 더 요청할 피드 정보가 없다면 아무작업도 하지 않음
   if (feedAll.feeds && !feedAll.feeds.next_page_url) return;
   dispatch({ type: FETCH_MORE_FEED });
@@ -90,10 +72,10 @@ export const fetchMoreFeed = () => async (dispatch, prevState) => {
     const res = await axios.get(`${BASE_URL}/api/list`, {
       params: {
         page: feedAll.page + 1,
-        ord: feedAll.ord,
+        ord: feedOption.order,
         limit: 10,
-        category: feedAll.selectedCategory
-          ? feedAll.selectedCategory.map((category) => category.id)
+        category: feedOption.selectedCategory
+          ? feedOption.selectedCategory.map((category) => category.id)
           : [1, 2, 3],
       },
     });
@@ -119,29 +101,15 @@ const initialState = {
   isLoadingMore: false,
   error: null,
   page: 1,
-  ord: "asc",
   limit: 10,
   category: null,
-  selectedCategory: null,
 };
 
 export const feedAllReducer = (
   state = initialState,
-  { type, feeds, error, ord, category, selectedCategory }
+  { type, feeds, error, category }
 ) => {
   switch (type) {
-    case CHANGE_SORT_METHOD:
-      return {
-        ...state,
-        ord,
-        page: 1,
-      };
-
-    case CHANGE_SELECTED_CATEGORY:
-      return {
-        ...state,
-        selectedCategory,
-      };
     case FETCH_CATEGORY:
     case FETCH_FEED:
       return {

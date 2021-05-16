@@ -3,12 +3,12 @@ import Checkbox from "components/Checkbox/Checkbox";
 import Modal from "components/Modal/Modal";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchCategory, fetchFeed } from "redux/storage/feedAll/feedAll";
 import {
-  changeSelectedCategory,
+  changePreviewLength,
   changeSortMethod,
-  fetchCategory,
-  fetchFeed,
-} from "redux/storage/feedAll/feedAll";
+  changeSelectedCategory,
+} from "redux/storage/feedOption/feedOption";
 import {
   option,
   sortOption,
@@ -21,17 +21,15 @@ import {
 import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
 import Tag from "components/Tag/Tag";
 import SelectOption from "components/SelectOption/SelectOption";
-import { changePreviewLength } from "redux/storage/option/option";
 
 const OptionBar = () => {
-  const {
-    ord,
-    category: categoryData,
-    selectedCategory,
-    isLoading,
-  } = useSelector((state) => state.feedAll);
+  const { category: categoryData, isLoading } = useSelector(
+    (state) => state.feedAll
+  );
 
-  const { previewLine } = useSelector((state) => state.option);
+  const { previewLine, order, selectedCategory } = useSelector(
+    (state) => state.feedOption
+  );
   const [openFilter, setOpenFilter] = useState(false);
   const [categoryArray, setCategoryArray] = useState([]);
   const dispatch = useDispatch();
@@ -47,13 +45,13 @@ const OptionBar = () => {
   }, [selectedCategory]);
 
   const handleAscSort = () => {
-    if (ord === "asc") return;
+    if (order === "asc") return;
     dispatch(changeSortMethod("asc"));
     dispatch(fetchFeed());
   };
 
   const handleDescSort = () => {
-    if (ord === "desc") return;
+    if (order === "desc") return;
     dispatch(changeSortMethod("desc"));
     dispatch(fetchFeed());
   };
@@ -88,12 +86,15 @@ const OptionBar = () => {
   return (
     <div className={option}>
       <div className={sortOption}>
-        <Button onClick={handleAscSort} className={ord === "asc" ? active : ""}>
+        <Button
+          onClick={handleAscSort}
+          className={order === "asc" ? active : ""}
+        >
           오름차순
         </Button>
         <Button
           onClick={handleDescSort}
-          className={ord === "desc" ? active : ""}
+          className={order === "desc" ? active : ""}
         >
           내림차순
         </Button>
