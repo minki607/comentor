@@ -20,6 +20,8 @@ import {
 } from "./OptionBar.module.scss";
 import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
 import Tag from "components/Tag/Tag";
+import SelectOption from "components/SelectOption/SelectOption";
+import { changePreviewLength } from "redux/storage/option/option";
 
 const OptionBar = () => {
   const {
@@ -28,6 +30,8 @@ const OptionBar = () => {
     selectedCategory,
     isLoading,
   } = useSelector((state) => state.feedAll);
+
+  const { previewLine } = useSelector((state) => state.option);
   const [openFilter, setOpenFilter] = useState(false);
   const [categoryArray, setCategoryArray] = useState([]);
   const dispatch = useDispatch();
@@ -77,6 +81,10 @@ const OptionBar = () => {
     setOpenFilter(false);
   };
 
+  const handlePreviewOption = (e) => {
+    dispatch(changePreviewLength(e.target.value));
+  };
+
   return (
     <div className={option}>
       <div className={sortOption}>
@@ -89,6 +97,15 @@ const OptionBar = () => {
         >
           내림차순
         </Button>
+        <SelectOption
+          label="미리보기"
+          onChange={handlePreviewOption}
+          value={previewLine}
+        >
+          <option value={1}>1줄</option>
+          <option value={2}>2줄</option>
+          <option value={3}>3줄</option>
+        </SelectOption>
       </div>
       <div className={filterOption}>
         {selectedCategory && (

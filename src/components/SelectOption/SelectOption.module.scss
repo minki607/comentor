@@ -1,0 +1,11 @@
+@use 'styles/variable.scss' as *;
+
+.selectBox {
+  label {
+    @include font(1.3rem);
+  }
+  select {
+    padding: 5px;
+    color: $font-normal;
+  }
+}

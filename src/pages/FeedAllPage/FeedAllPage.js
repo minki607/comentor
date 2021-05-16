@@ -19,8 +19,8 @@ const FeedAllPage = () => {
   const { feeds, isLoading: isFeedLoading } = useSelector(
     (state) => state.feedAll
   );
-
   const { ads, isLoading: isAdsLoading } = useSelector((state) => state.ads);
+  const { previewLine } = useSelector((state) => state.option);
   const dispatch = useDispatch();
 
   // 피드 정보 요청
@@ -87,7 +87,7 @@ const FeedAllPage = () => {
                     ))}
                   <li className={cardList}>
                     <Card linkTo={`feed/${feed.id}`}>
-                      <FeedContent feed={feed} />
+                      <FeedContent feed={feed} preview={previewLine} />
                     </Card>
                   </li>
                 </Fragment>

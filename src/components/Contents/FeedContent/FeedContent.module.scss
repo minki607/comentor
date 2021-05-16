@@ -4,10 +4,19 @@
   h2 {
     margin: 17px 0 6px 0px;
   }
-
   h2,
   p {
+    text-align: justify;
+  }
+
+  .preview1 {
     @include ellipsis(1);
+  }
+  .preview2 {
+    @include ellipsis(2);
+  }
+  .preview3 {
+    @include ellipsis(3);
   }
 }
 
