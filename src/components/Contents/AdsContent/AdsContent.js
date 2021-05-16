@@ -7,7 +7,11 @@ const AdsContent = ({ ads: { title, contents, img } = {} }) => {
       <span>sponsored</span>
       <div className={adsContainer}>
         <img
-          src={`https://cdn.comento.kr/assignment/${img}`}
+          src={
+            img
+              ? `https://cdn.comento.kr/assignment/${img}`
+              : "/assets/placeholder.jpg"
+          }
           alt="광고(고양이 이미지)"
         />
         <div className={textContainer}>

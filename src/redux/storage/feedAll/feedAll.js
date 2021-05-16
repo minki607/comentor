@@ -13,7 +13,7 @@ const FETCH_MORE_FEED = "피드 정보 더 요청";
 const FETCH_MORE_FEED_SUCCESS = "피드 정보 더 요청 성공";
 const FETCH_MORE_FEED_FAILURE = "피드 정보 더 요청 실패";
 
-export const fetchCategory = () => async (dispatch, prevState) => {
+export const fetchCategory = () => async (dispatch) => {
   dispatch({ type: FETCH_CATEGORY });
   try {
     const res = await axios.get(`${BASE_URL}/api/category`);
@@ -34,12 +34,12 @@ export const fetchCategory = () => async (dispatch, prevState) => {
 };
 
 export const fetchFeed = () => async (dispatch, prevState) => {
-  const { feedAll, feedOption } = prevState();
+  const { feedOption } = prevState();
   dispatch({ type: FETCH_FEED });
   try {
     const res = await axios.get(`${BASE_URL}/api/list`, {
       params: {
-        page: feedAll.page,
+        page: 1,
         ord: feedOption.order,
         limit: 10,
         category: feedOption.selectedCategory
@@ -129,6 +129,7 @@ export const feedAllReducer = (
         ...state,
         feeds,
         isLoading: false,
+        page: 1,
       };
 
     case FETCH_CATEGORY_FAILURE:

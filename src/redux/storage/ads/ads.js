@@ -68,7 +68,6 @@ const initialState = {
   isLoadingMore: false,
   error: null,
   page: 1,
-  limit: 3,
 };
 
 export const adsReducer = (state = initialState, { type, ads, error }) => {
@@ -84,6 +83,7 @@ export const adsReducer = (state = initialState, { type, ads, error }) => {
         ...state,
         ads,
         isLoading: false,
+        page: 1,
       };
 
     case FETCH_ADS_FAILURE:

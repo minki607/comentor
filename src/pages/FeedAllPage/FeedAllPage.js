@@ -1,19 +1,19 @@
-import React, { Fragment, useCallback, useEffect } from "react";
+import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
+import Button from "components/Button/Button";
 import Card from "components/Card/Card";
+import AdsContent from "components/Contents/AdsContent/AdsContent";
 import FeedContent from "components/Contents/FeedContent/FeedContent";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchFeed, fetchMoreFeed } from "redux/storage/feedAll/feedAll";
+import OptionBar from "components/OptionBar/OptionBar";
+import React, { Fragment, useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchAds, fetchMoreAds } from "redux/storage/ads/ads";
+import { fetchFeed, fetchMoreFeed } from "redux/storage/feedAll/feedAll";
 import {
+  cardList,
+  feedSection,
   page,
   userSection,
-  feedSection,
-  cardList,
 } from "./FeedAllPage.module.scss";
-import Button from "components/Button/Button";
-import AdsContent from "components/Contents/AdsContent/AdsContent";
-import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
-import OptionBar from "components/OptionBar/OptionBar";
 
 const FeedAllPage = () => {
   const { feeds, isLoading: isFeedLoading } = useSelector(

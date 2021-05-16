@@ -25,7 +25,6 @@ const FeedContent = ({
     }
   };
 
-  console.log(previewClass());
   return (
     <article className={feed}>
       <header>
