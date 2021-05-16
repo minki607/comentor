@@ -3,7 +3,8 @@ import Checkbox from "components/Checkbox/Checkbox";
 import Modal from "components/Modal/Modal";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategory, fetchFeed } from "redux/storage/feedAll/feedAll";
+import { fetchFeed } from "redux/storage/feedAll/feedAll";
+import { fetchCategory } from "redux/storage/feedCategory/feedCategory";
 import {
   changePreviewLength,
   changeSortMethod,
@@ -24,7 +25,7 @@ import SelectOption from "components/SelectOption/SelectOption";
 
 const OptionBar = () => {
   const { category: categoryData, isLoading } = useSelector(
-    (state) => state.feedAll
+    (state) => state.feedCategory
   );
 
   const { previewLine, order, selectedCategory } = useSelector(
@@ -127,7 +128,11 @@ const OptionBar = () => {
         <form className={filterForm} onSubmit={handleFilterSubmit}>
           <div className={optionContainer}>
             {isLoading ? (
-              <LoadingSpinner />
+              <LoadingSpinner
+                title="필터 로딩중"
+                height="100px"
+                width="100px"
+              />
             ) : (
               categoryData?.map((category) => {
                 return (

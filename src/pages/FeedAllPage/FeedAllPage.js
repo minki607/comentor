@@ -11,14 +11,18 @@ import { fetchFeed, fetchMoreFeed } from "redux/storage/feedAll/feedAll";
 import {
   cardList,
   feedSection,
+  loadingArea,
   page,
   userSection,
+  spinnerArea,
 } from "./FeedAllPage.module.scss";
 
 const FeedAllPage = () => {
-  const { feeds, isLoading: isFeedLoading } = useSelector(
-    (state) => state.feedAll
-  );
+  const {
+    feeds,
+    isLoading: isFeedLoading,
+    isLoadingMore,
+  } = useSelector((state) => state.feedAll);
   const { ads, isLoading: isAdsLoading } = useSelector((state) => state.ads);
   const { previewLine } = useSelector((state) => state.feedOption);
   const dispatch = useDispatch();
@@ -67,7 +71,9 @@ const FeedAllPage = () => {
       <section className={feedSection}>
         <OptionBar />
         {isFeedLoading ? (
-          <LoadingSpinner title="로딩중" />
+          <div className={loadingArea}>
+            <LoadingSpinner title="로딩중" />
+          </div>
         ) : (
           <ul>
             {feeds?.data.map((feed, index) => {
@@ -94,6 +100,13 @@ const FeedAllPage = () => {
               );
             })}
           </ul>
+        )}
+        {/* 피드 추가 요청시 로딩 처리. 
+        스피너 크기의 공간을 확보해주기 주기 위해 스피너랑 똑같은 높이를가진 div 추가 */}
+        {isLoadingMore ? (
+          <LoadingSpinner title="피드 추가 로딩중" height="50px" width="50px" />
+        ) : (
+          <div className={spinnerArea}></div>
         )}
       </section>
     </div>

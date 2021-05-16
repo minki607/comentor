@@ -17,6 +17,10 @@
     width: 100%;
   }
 
+  .loadingArea {
+    min-height: 100vh;
+  }
+
   .cardList {
     margin: 15px 0 30px 0;
     @include mobileTablet {
@@ -25,5 +29,8 @@
     &:first-child {
       margin-top: 0;
     }
+  }
+  .spinnerArea {
+    height: 50px;
   }
 }
