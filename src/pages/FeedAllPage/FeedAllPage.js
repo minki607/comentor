@@ -11,7 +11,6 @@ import { fetchFeed, fetchMoreFeed } from "redux/storage/feedAll/feedAll";
 import {
   cardList,
   feedSection,
-  loadingArea,
   page,
   userSection,
   spinnerArea,
@@ -71,9 +70,7 @@ const FeedAllPage = () => {
       <section className={feedSection}>
         <OptionBar />
         {isFeedLoading ? (
-          <div className={loadingArea}>
-            <LoadingSpinner title="로딩중" />
-          </div>
+          <LoadingSpinner title="로딩중" />
         ) : (
           <ul>
             {feeds?.data.map((feed, index) => {

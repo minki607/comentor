@@ -5,7 +5,9 @@
     @include font(1.3rem);
   }
   select {
+    margin: 0 5px;
     padding: 5px;
     color: $font-normal;
+    -moz-appearance: none; // 파이어 폭스에서 커스텀 스타일이 테마와 맞지 않아 안보이도록 설정
   }
 }

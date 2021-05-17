@@ -25,9 +25,7 @@ const FeedPage = () => {
   return (
     <section className={feedSection}>
       {isLoading ? (
-        <div className={loadingArea}>
-          <LoadingSpinner title="로딩중" />
-        </div>
+        <LoadingSpinner title="로딩중" />
       ) : (
         feed && (
           <>
