@@ -1,5 +1,6 @@
 import Tag from "components/Tag/Tag";
 import React from "react";
+import { useSelector } from "react-redux";
 import {
   feed,
   feedId,
@@ -13,6 +14,7 @@ const FeedContent = ({
   feed: { category_id, id, user_id, created_at, title, contents } = {},
   preview,
 }) => {
+  // css 선택 적용 (미리보기 줄)
   const previewClass = () => {
     switch (preview) {
       default:
@@ -25,10 +27,13 @@ const FeedContent = ({
     }
   };
 
+  const { category: categoryData } = useSelector((state) => state.feedCategory);
   return (
     <article className={feed}>
       <header>
-        <span>{category_id}</span>
+        <span>
+          {categoryData?.find((category) => category.id === category_id).name}
+        </span>
         <div className={feedId}>
           <Tag>피드 ID</Tag>
           <span>{id}</span>

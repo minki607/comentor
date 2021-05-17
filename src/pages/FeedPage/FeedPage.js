@@ -1,11 +1,6 @@
 import Card from "components/Card/Card";
 import React, { useEffect } from "react";
-import {
-  feedSection,
-  loadingArea,
-  replyCount,
-  replies,
-} from "./FeedPage.module.scss";
+import { feedSection, replyCount, replies } from "./FeedPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import SingleFeedContent from "components/Contents/SingleFeedContent/SingleFeedContent";

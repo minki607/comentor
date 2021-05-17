@@ -1,6 +1,8 @@
 const CHANGE_PREVIEW_LINE = "미리 보기 줄 설정";
 const CHANGE_SORT_METHOD = "정렬 방법 변경";
-const CHANGE_SELECTED_CATEGORY = "선택된 카테고리 변경";
+const HIDE_ADS = "광고 숨김 설정";
+
+export const CHANGE_SELECTED_CATEGORY = "선택된 카테고리 변경";
 
 export const changePreviewLength = (line) => {
   window.localStorage.setItem("previewLine", line);
@@ -17,11 +19,16 @@ export const changeSelectedCategory = (category) => {
   return { type: CHANGE_SELECTED_CATEGORY, selectedCategory: category };
 };
 
+export const hideAds = () => {
+  return { type: HIDE_ADS };
+};
+
 const initialState = {
   previewLine: window.localStorage.getItem("previewLine") || 1,
   order: window.localStorage.getItem("order") || "asc",
   selectedCategory:
     window.JSON.parse(window.localStorage.getItem("category")) || null,
+  isAdsVisible: true,
 };
 
 export const feedOptionReducer = (
@@ -43,6 +50,11 @@ export const feedOptionReducer = (
       return {
         ...state,
         selectedCategory,
+      };
+    case HIDE_ADS:
+      return {
+        ...state,
+        isAdsVisible: false,
       };
     default:
       return state;

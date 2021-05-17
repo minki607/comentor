@@ -1,4 +1,5 @@
 import axios from "axios";
+import { changeSelectedCategory } from "../feedOption/feedOption";
 const BASE_URL = "https://problem.comento.kr";
 
 const FETCH_CATEGORY = "카테고리 정보 요청";
@@ -11,12 +12,12 @@ export const fetchCategory = () => async (dispatch) => {
     const res = await axios.get(`${BASE_URL}/api/category`);
     if (res.status === 200) {
       dispatch({ type: FETCH_CATEGORY_SUCCESS, category: res.data.category });
-    } else {
-      dispatch({
-        type: FETCH_CATEGORY_FAILURE,
-        error: res.message,
-      });
+      dispatch(changeSelectedCategory(res.data.category));
     }
+    dispatch({
+      type: FETCH_CATEGORY_FAILURE,
+      error: res.message,
+    });
   } catch (err) {
     dispatch({
       type: FETCH_CATEGORY_FAILURE,

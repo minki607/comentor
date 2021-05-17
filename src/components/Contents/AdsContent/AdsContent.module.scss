@@ -1,6 +1,7 @@
 @use 'styles/variable.scss' as *;
 
 .ads {
+  position: relative;
   img {
     max-width: 310px;
     max-height: 179px;
@@ -15,6 +16,12 @@
     display: inline-block;
     margin-bottom: 16.5px;
     @include font(1.3rem, $font-light);
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 

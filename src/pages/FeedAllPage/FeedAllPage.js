@@ -8,6 +8,7 @@ import React, { Fragment, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAds, fetchMoreAds } from "redux/storage/ads/ads";
 import { fetchFeed, fetchMoreFeed } from "redux/storage/feedAll/feedAll";
+import { hideAds } from "redux/storage/feedOption/feedOption";
 import {
   cardList,
   feedSection,
@@ -23,6 +24,7 @@ const FeedAllPage = () => {
     isLoadingMore,
   } = useSelector((state) => state.feedAll);
   const { ads, isLoading: isAdsLoading } = useSelector((state) => state.ads);
+  const { isAdsVisible } = useSelector((state) => state.feedOption);
   const { previewLine } = useSelector((state) => state.feedOption);
   const dispatch = useDispatch();
 
@@ -33,8 +35,8 @@ const FeedAllPage = () => {
 
   // 광고 정보 요청
   useEffect(() => {
-    dispatch(fetchAds());
-  }, [dispatch]);
+    if (isAdsVisible) dispatch(fetchAds());
+  }, [dispatch, isAdsVisible]);
 
   // 무한스크롤 로직
   const onInfiniteScroll = useCallback(() => {
@@ -49,15 +51,19 @@ const FeedAllPage = () => {
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight) {
       dispatch(fetchMoreFeed());
-      dispatch(fetchMoreAds());
+      if (isAdsVisible) dispatch(fetchMoreAds());
     }
-  }, [dispatch]);
+  }, [dispatch, isAdsVisible]);
 
   // 스크롤 이벤트 리스너 등록
   useEffect(() => {
     window.addEventListener("scroll", onInfiniteScroll);
     return () => window.removeEventListener("scroll", onInfiniteScroll);
   }, [onInfiniteScroll]);
+
+  const handleHideAd = () => {
+    dispatch(hideAds());
+  };
 
   return (
     <div className={page}>
@@ -70,7 +76,7 @@ const FeedAllPage = () => {
       <section className={feedSection}>
         <OptionBar />
         {isFeedLoading ? (
-          <LoadingSpinner title="로딩중" />
+          <LoadingSpinner title="피드 로딩중" />
         ) : (
           <ul>
             {feeds?.data.map((feed, index) => {
@@ -80,13 +86,18 @@ const FeedAllPage = () => {
                   {index !== 0 &&
                     index % 3 === 0 &&
                     (isAdsLoading ? (
-                      <LoadingSpinner title="로딩중" />
+                      <LoadingSpinner title="광고 로딩중" />
                     ) : (
-                      <li className={cardList}>
-                        <Card>
-                          <AdsContent ads={ads?.data[index / 3 - 1]} />
-                        </Card>
-                      </li>
+                      isAdsVisible && (
+                        <li className={cardList}>
+                          <Card>
+                            <AdsContent
+                              ads={ads?.data[index / 3 - 1]}
+                              onClick={handleHideAd}
+                            />
+                          </Card>
+                        </li>
+                      )
                     ))}
                   <li className={cardList}>
                     <Card linkTo={`feed/${feed.id}`}>
