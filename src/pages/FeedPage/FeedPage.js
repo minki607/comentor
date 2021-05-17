@@ -7,6 +7,7 @@ import SingleFeedContent from "components/Contents/SingleFeedContent/SingleFeedC
 import { fetchFeedDetail } from "redux/storage/feedDetail/feedDetail";
 import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
 import FeedReplyContent from "components/Contents/FeedReplyContent/FeedReplyContent";
+import { a11yHidden } from "styles/modules/common.module.scss";
 
 const FeedPage = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ const FeedPage = () => {
 
   return (
     <section className={feedSection}>
+      <h1 className={a11yHidden}>피드 상세 정보</h1>
       {isLoading ? (
         <LoadingSpinner title="로딩중" />
       ) : (

@@ -16,6 +16,7 @@ import {
   userSection,
   spinnerArea,
 } from "./FeedAllPage.module.scss";
+import { a11yHidden } from "styles/modules/common.module.scss";
 
 const FeedAllPage = () => {
   const {
@@ -68,12 +69,14 @@ const FeedAllPage = () => {
   return (
     <div className={page}>
       <section className={userSection}>
+        <h1 className={a11yHidden}>유저 정보</h1>
         <Button primary bold $width={235} $height={60}>
           로그인
         </Button>
       </section>
 
       <section className={feedSection}>
+        <h1 className={a11yHidden}>전체 피드</h1>
         <OptionBar />
         {isFeedLoading ? (
           <LoadingSpinner title="피드 로딩중" />

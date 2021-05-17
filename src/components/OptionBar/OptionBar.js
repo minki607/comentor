@@ -22,6 +22,7 @@ import {
 import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
 import Tag from "components/Tag/Tag";
 import SelectOption from "components/SelectOption/SelectOption";
+import { a11yHidden } from "styles/modules/common.module.scss";
 
 const OptionBar = () => {
   const { category: categoryData, isLoading } = useSelector(
@@ -111,13 +112,16 @@ const OptionBar = () => {
       </div>
       <div className={filterOption}>
         {selectedCategory && (
-          <ul className={selectedList}>
-            {selectedCategory.map((category) => (
-              <li key={category.id}>
-                <Tag>{category.name}</Tag>
-              </li>
-            ))}
-          </ul>
+          <>
+            <p className={a11yHidden}>선택된 카테고리</p>
+            <ul className={selectedList}>
+              {selectedCategory.map((category) => (
+                <li key={category.id}>
+                  <Tag>{category.name}</Tag>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
 
         <Button onClick={() => setOpenFilter(true)} $width={45} $height={24}>
