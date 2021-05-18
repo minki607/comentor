@@ -4,6 +4,8 @@ import React, { useEffect, useRef } from "react";
 import { overlay, modal, content, closeBtn } from "./Modal.module.scss";
 import { ReactComponent as Close } from "assets/close.svg";
 
+/* --------------------------------- 모달 컴포넌트 -------------------------------- */
+
 const Modal = ({ isVisible, onClick, heading, children }) => {
   const dialogRef = useRef(null);
 

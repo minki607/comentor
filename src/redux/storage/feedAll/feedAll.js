@@ -8,6 +8,7 @@ const FETCH_MORE_FEED = "피드 정보 더 요청";
 const FETCH_MORE_FEED_SUCCESS = "피드 정보 더 요청 성공";
 const FETCH_MORE_FEED_FAILURE = "피드 정보 더 요청 실패";
 
+// 피드 정보 요청
 export const fetchFeed = () => async (dispatch, prevState) => {
   const { feedOption } = prevState();
   dispatch({ type: FETCH_FEED });
@@ -17,6 +18,7 @@ export const fetchFeed = () => async (dispatch, prevState) => {
         page: 1,
         ord: feedOption.order,
         limit: 10,
+        // 피드 옵션 정보의 선택된 카테고리를 정보가 있으면 아이디만 params로 전달 없으면 전체 카테고리 전달
         category: feedOption.selectedCategory
           ? feedOption.selectedCategory.map((category) => category.id)
           : [1, 2, 3],
@@ -38,6 +40,7 @@ export const fetchFeed = () => async (dispatch, prevState) => {
   }
 };
 
+// 피드 정보 더 요청
 export const fetchMoreFeed = () => async (dispatch, prevState) => {
   const { feedAll, feedOption } = prevState();
   // 더 요청할 피드 정보가 없다면 아무작업도 하지 않음
@@ -82,7 +85,7 @@ const initialState = {
 
 export const feedAllReducer = (
   state = initialState,
-  { type, feeds, error, category }
+  { type, feeds, error }
 ) => {
   switch (type) {
     case FETCH_FEED:

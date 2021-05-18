@@ -1,9 +1,9 @@
 import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
 import Button from "components/Button/Button";
 import Card from "components/Card/Card";
-import AdsContent from "components/Contents/AdsContent/AdsContent";
-import FeedContent from "components/Contents/FeedContent/FeedContent";
-import OptionBar from "components/OptionBar/OptionBar";
+import AdsContent from "containers/Contents/AdsContent/AdsContent";
+import FeedContent from "containers/Contents/FeedContent/FeedContent";
+import OptionBar from "containers/OptionBar/OptionBar";
 import React, { Fragment, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAds, fetchMoreAds } from "redux/storage/ads/ads";
@@ -18,15 +18,19 @@ import {
 } from "./FeedAllPage.module.scss";
 import { a11yHidden } from "styles/modules/common.module.scss";
 
+/* -------------------------------- 전체 피드 페이지 ------------------------------- */
+
 const FeedAllPage = () => {
   const {
     feeds,
     isLoading: isFeedLoading,
     isLoadingMore,
-  } = useSelector((state) => state.feedAll);
-  const { ads, isLoading: isAdsLoading } = useSelector((state) => state.ads);
-  const { isAdsVisible } = useSelector((state) => state.feedOption);
-  const { previewLine } = useSelector((state) => state.feedOption);
+  } = useSelector((state) => state.feedAll); // 피드 정보 관련
+  const { ads, isLoading: isAdsLoading } = useSelector((state) => state.ads); // 광고 정보 관련
+  const { isAdsVisible, previewLine } = useSelector(
+    // 피드 옵션 관련
+    (state) => state.feedOption
+  );
   const dispatch = useDispatch();
 
   // 피드 정보 요청
@@ -50,6 +54,7 @@ const FeedAllPage = () => {
       document.body.scrollTop
     );
     const clientHeight = document.documentElement.clientHeight;
+    // 스크롤이 화면 밑에 닿았을때 피드, 광고 정보 더 요청. 광고는 숨김 상태가 아닐경우만 요청
     if (scrollTop + clientHeight >= scrollHeight) {
       dispatch(fetchMoreFeed());
       if (isAdsVisible) dispatch(fetchMoreAds());
@@ -62,6 +67,7 @@ const FeedAllPage = () => {
     return () => window.removeEventListener("scroll", onInfiniteScroll);
   }, [onInfiniteScroll]);
 
+  // 광고 숨김 처리
   const handleHideAd = () => {
     dispatch(hideAds());
   };

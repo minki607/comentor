@@ -5,6 +5,7 @@ const FETCH_FEED_DETAIL = "피드 상세 정보 요청";
 const FETCH_FEED_DETAIL_SUCCESS = "피드 상세 정보 요청 성공";
 const FETCH_FEED_DETAIL_FAILURE = "피드 상세 정보 요청 실패";
 
+// 피드 상세 정보 요청
 export const fetchFeedDetail = (id) => async (dispatch) => {
   dispatch({ type: FETCH_FEED_DETAIL });
   try {

@@ -9,6 +9,7 @@ const FETCH_MORE_ADS = "광고 정보 더 요청";
 const FETCH_MORE_ADS_SUCCESS = "광고 정보 더 요청 성공";
 const FETCH_MORE_ADS_FAILURE = "광고 정보 더 요청 실패";
 
+// 광고 정보 요청
 export const fetchAds = () => async (dispatch) => {
   dispatch({ type: FETCH_ADS });
   try {
@@ -34,6 +35,7 @@ export const fetchAds = () => async (dispatch) => {
   }
 };
 
+// 광고 정보 더 요청
 export const fetchMoreAds = () => async (dispatch, prevState) => {
   const { feedAll, ads } = prevState();
   // 더 요청할 피드 정보가 없다면 광고를 더 불러올 필요가 없기 때문에 종료

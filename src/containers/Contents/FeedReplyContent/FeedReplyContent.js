@@ -1,6 +1,8 @@
 import React from "react";
 import { reply } from "./FeedReplyContent.module.scss";
 
+/* -------------------------------- 피드 답글 영역 -------------------------------- */
+
 const FeedReplyContent = ({ reply: { user, created_at, contents } }) => {
   return (
     <article className={reply}>

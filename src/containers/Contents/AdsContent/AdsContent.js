@@ -2,6 +2,8 @@ import Button from "components/Button/Button";
 import React from "react";
 import { ads, adsContainer, textContainer } from "./AdsContent.module.scss";
 
+/* ---------------------------------- 광고 영역 --------------------------------- */
+
 const AdsContent = ({ ads: { title, contents, img } = {}, onClick }) => {
   return (
     <article className={ads}>

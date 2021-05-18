@@ -5,18 +5,18 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./storage";
 
-/* ------------------------------- middlewares ------------------------------ */
+/* ------------------------------- 미들웨어 ------------------------------ */
 
 const middlewares = [thunk, logger];
 
-/* ---------------------------------- store --------------------------------- */
+/* ---------------------------------- 스토어 --------------------------------- */
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(...middlewares))
 );
 
-/* ------------------------ store provider component ------------------------ */
+/* ------------------------ 스토어 공급자 ------------------------ */
 
 export const StoreProvider = ({ children }) => {
   return <Provider store={store}>{children}</Provider>;

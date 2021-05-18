@@ -10,10 +10,14 @@ import {
   preview3,
 } from "./FeedContent.module.scss";
 
+/* ---------------------------------- 피드 영역 --------------------------------- */
+
 const FeedContent = ({
   feed: { category_id, id, user_id, created_at, title, contents } = {},
   preview,
 }) => {
+  const { category: categoryData } = useSelector((state) => state.feedCategory);
+
   // css 선택 적용 (미리보기 줄)
   const previewClass = () => {
     switch (preview) {
@@ -27,11 +31,11 @@ const FeedContent = ({
     }
   };
 
-  const { category: categoryData } = useSelector((state) => state.feedCategory);
   return (
     <article className={feed}>
       <header>
         <span>
+          {/* 피드 정보 요청시 카티고리id 정보만 반환하기 때문에 반환한 id를 카테고리 정보에서 검색후 이름 반환 */}
           {categoryData?.find((category) => category.id === category_id).name}
         </span>
         <div className={feedId}>

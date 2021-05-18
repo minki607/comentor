@@ -1,6 +1,8 @@
 import React from "react";
 import { feedDetail } from "./SingleFeedContent.Module.scss";
 
+/* -------------------------------- 피드 상세 영역 -------------------------------- */
+
 const SingleFeedContent = ({ feed: { title, contents, created_at } = {} }) => {
   return (
     <article className={feedDetail}>

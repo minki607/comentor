@@ -1,6 +1,8 @@
 import React from "react";
 import { container, input, label } from "./Checkbox.module.scss";
 
+/* ------------------------------- 체크 박스 컴포넌트 ------------------------------- */
+
 const Checkbox = ({ id, children, isChecked, value, ...restProps }) => {
   return (
     <div className={container}>

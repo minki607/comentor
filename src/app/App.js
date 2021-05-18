@@ -1,6 +1,6 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import Header from "containers/Header/Header";
-import PageContainer from "containers/PageContainer.js/PageContainer";
+import PageContainer from "containers/PageContainer/PageContainer";
 import FeedAllPage from "pages/FeedAllPage/FeedAllPage";
 import FeedPage from "pages/FeedPage/FeedPage";
 import PageNotFound from "pages/PageNotFound/PageNotFound";

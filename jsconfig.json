@@ -1,3 +1,4 @@
+// 절대 경로 path 설정
 {
   "compilerOptions": {
     "baseUrl": "src"

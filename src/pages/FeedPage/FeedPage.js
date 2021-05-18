@@ -3,17 +3,19 @@ import React, { useEffect } from "react";
 import { feedSection, replyCount, replies } from "./FeedPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import SingleFeedContent from "components/Contents/SingleFeedContent/SingleFeedContent";
+import SingleFeedContent from "containers/Contents/SingleFeedContent/SingleFeedContent";
 import { fetchFeedDetail } from "redux/storage/feedDetail/feedDetail";
 import { ReactComponent as LoadingSpinner } from "assets/spinner.svg";
-import FeedReplyContent from "components/Contents/FeedReplyContent/FeedReplyContent";
+import FeedReplyContent from "containers/Contents/FeedReplyContent/FeedReplyContent";
 import { a11yHidden } from "styles/modules/common.module.scss";
 
 const FeedPage = () => {
-  const { id } = useParams();
-  const { feed, isLoading } = useSelector((state) => state.feedDetail);
+  const { id } = useParams(); // path 파라미터 추출
+  const { feed, isLoading } = useSelector((state) => state.feedDetail); // 피드 상세 정보 관련
+
   const dispatch = useDispatch();
 
+  //추출된 아이디 정보로 상세 정보 요청
   useEffect(() => {
     dispatch(fetchFeedDetail(id));
   }, [dispatch, id]);
@@ -22,7 +24,7 @@ const FeedPage = () => {
     <section className={feedSection}>
       <h1 className={a11yHidden}>피드 상세 정보</h1>
       {isLoading ? (
-        <LoadingSpinner title="로딩중" />
+        <LoadingSpinner title="피드 상세 정보 로딩중" />
       ) : (
         feed && (
           <>

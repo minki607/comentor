@@ -1,6 +1,8 @@
 import React from "react";
 import { button, primaryBtn, secondaryBtn } from "./Button.module.scss";
 
+/* --------------------------------- 버튼 컴포넌트 -------------------------------- */
+
 const Button = ({
   type = "button",
   primary,

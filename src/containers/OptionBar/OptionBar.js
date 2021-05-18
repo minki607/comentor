@@ -24,39 +24,47 @@ import Tag from "components/Tag/Tag";
 import SelectOption from "components/SelectOption/SelectOption";
 import { a11yHidden } from "styles/modules/common.module.scss";
 
+/* ---------------------------------- 옵션 관련 영역 --------------------------------- */
+
 const OptionBar = () => {
   const { category: categoryData, isLoading } = useSelector(
     (state) => state.feedCategory
-  );
+  ); // 피드 카테고리 관련
 
   const { previewLine, order, selectedCategory } = useSelector(
     (state) => state.feedOption
-  );
+  ); // 피드 옵션 관련
   const [openFilter, setOpenFilter] = useState(false);
   const [categoryArray, setCategoryArray] = useState([]);
   const dispatch = useDispatch();
 
+  // 전체 카테고리 요청
   useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
 
+  // 선택된 카테고리(selectedCategory)랑 동기화될 카테고리 배열 세팅 (controlled 폼을 위해)
   useEffect(() => {
     if (selectedCategory) {
       setCategoryArray(selectedCategory);
     }
   }, [selectedCategory]);
 
+  // 오름차순 정렬을 위한 처리
   const handleAscSort = () => {
     if (order === "asc") return;
     dispatch(changeSortMethod("asc"));
     dispatch(fetchFeed());
   };
 
+  // 내림차순 정렬을 위한 처리
   const handleDescSort = () => {
     if (order === "desc") return;
     dispatch(changeSortMethod("desc"));
     dispatch(fetchFeed());
   };
+
+  // 필터 카터고리 체크 처리
   const handleChangeCheck = (selected) => {
     // 이미 선택된 카테고리 상태에 추가 된 상태면 없애고 그렇지 않으면 새로 추가
     if (categoryArray.find((category) => category.id === selected.id)) {
@@ -68,6 +76,7 @@ const OptionBar = () => {
     }
   };
 
+  // 이미 선택된 카테고리 상태에 추가 된 상태면 없애고 그렇지 않으면 새로 추가
   const handleFilterSubmit = (e) => {
     e.preventDefault();
     dispatch(changeSelectedCategory(categoryArray));
@@ -75,12 +84,14 @@ const OptionBar = () => {
     setOpenFilter(false);
   };
 
+  // 모달 닫기 처리
   const handleModalClose = () => {
     // 모달을 닫으면 스토어의 상태랑 다시 동기화 되도록 설정
     setCategoryArray(selectedCategory);
     setOpenFilter(false);
   };
 
+  // 미리보기 줄 설정
   const handlePreviewOption = (e) => {
     dispatch(changePreviewLength(e.target.value));
   };
