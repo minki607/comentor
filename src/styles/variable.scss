@@ -50,3 +50,9 @@ $font-light2: #adb5bd;
     @content;
   }
 }
+
+@mixin mobileLarge {
+  @media (max-width: 530px) {
+    @content;
+  }
+}

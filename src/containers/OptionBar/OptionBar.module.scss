@@ -7,6 +7,11 @@
   @include mobileTablet {
     padding: 0 18px;
   }
+  @include mobileLarge {
+    flex-flow: column;
+    padding: 10px 0;
+    height: 80px;
+  }
 }
 
 .sortOption {
